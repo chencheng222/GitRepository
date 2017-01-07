@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 指定默认编码集 -->
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<!-- struts框架实际要处理的后缀 -->
+	<constant name="struts.action.extension" value="action,,do"></constant>
+	<!-- 静态资源是否需要缓存，默认true，开发阶段最好false -->
+	<constant name="struts.serve.static.browserCache" value="false"></constant>
+	<!-- 定义主题样式为simple，方便以后自己定义自己的风格和样式 (在default.properties文件中找)-->
+	<!-- 上传大文件 -->
+	<constant name="struts.multipart.maxSize" value="2000"></constant>
+	
+	<constant name="struts.ui.theme" value="simple"></constant>
+	
+		<!-- 配置全局错误页面，只能在package下 ，范围只在当前包-->
+	<package name="default" extends="struts-default" namespace="/">
+	
+		<!-- 岗位管理 -->
+		<action name="roleAction_*" class="com.cc.oa.view.action.RoleAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/roleAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/roleAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/roleAction/editUI.jsp</result>
+			<result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/setPrivilegeUI.jsp</result>
+			<result name="toList" type="redirectAction">roleAction_list</result>
+		</action>
+		
+		<!-- 部门管理 -->
+		<action name="departmentAction_*" class="com.cc.oa.view.action.DepartmentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/departmentAction/saveUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/departmentAction/saveUI.jsp</result>
+			<result name="toList" type="redirectAction">departmentAction_list?parentId=${parentId}</result>
+		</action>
+		
+		
+		<!-- 用户管理 -->
+		<action name="userAction_*" class="userAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+			<result name="toList" type="redirectAction">userAction_list</result>
+			
+			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
+			<result name="toIndex" type="redirect">/index.jsp</result>
+		</action>
+		
+		<!-- 主页 -->
+		<action name="homeAction_*" class="com.cc.oa.view.action.HomeAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/homeAction/index.jsp</result>
+			<result name="top">/WEB-INF/jsp/homeAction/top.jsp</result>
+			<result name="left">/WEB-INF/jsp/homeAction/left.jsp</result>
+			<result name="right">/WEB-INF/jsp/homeAction/right.jsp</result>
+			<result name="bottom">/WEB-INF/jsp/homeAction/bottom.jsp</result>
+		</action>
+	</package>
+</struts>
