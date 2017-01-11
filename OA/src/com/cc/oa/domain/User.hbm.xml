@@ -20,10 +20,10 @@
         <property name="description"/>
 
         <!--Department:本类与Department多对一-->
-        <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+        <many-to-one name="department" class="Department" column="departmentId" lazy="false"></many-to-one>
 
         <!--roles:本类与Role多对多-->
-		<set name="roles" table="user_role">
+		<set name="roles" table="user_role" lazy="false">
 			<key column="userId" />
 			<many-to-many class="Role" column="roleId"></many-to-many>
 		</set>

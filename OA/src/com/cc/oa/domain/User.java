@@ -21,6 +21,64 @@ public class User {
 	private String email; // 电子邮件
 	private String description; // 说明
 
+	/**
+	 * 根据登录名判断用户权限(登录名唯一)
+	 * @param privilegeName
+	 * @return
+	 */
+	public boolean hasPrivilegeByName(String privilegeName) {
+		
+		//超级管理员
+		if (isAdmin()) {
+			return true;
+		}
+		
+		//非超级管理员用户权限判断
+		for (Role role : roles) {
+			for (Privilege privilege : role.getPrivileges()) {
+				if (privilegeName.equals(privilege.getName())){
+					return true;
+				}
+			}
+				
+		}
+		return false;
+	}
+	
+	/**
+	 * 根据Action地址设置权限
+	 * @param privilegeUrl
+	 * @return
+	 */
+	public boolean hasPrivilegeByUrl(String privilegeUrl) {
+		
+		//超级管理员
+		if (isAdmin()) {
+			return true;
+		}
+		
+		//以UI后缀的也拥有权限  例如：addUI.action = add.action权限相同
+		if (privilegeUrl.endsWith("UI")) {
+			privilegeUrl = privilegeUrl.substring(0, privilegeUrl.length()-2);
+		}
+		
+		//非超级管理员用户权限判断
+		for (Role role : roles) {
+			for (Privilege privilege : role.getPrivileges()) {
+				if (privilegeUrl.equals(privilege.getUrl())){
+					return true;
+				}
+			}
+			
+		}
+		return false;
+	}
+	
+	public boolean isAdmin() {
+		
+		return "admin".equals(loginName);
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -15,10 +15,10 @@
 </head>
 <body style="margin: 0">
 <div id="Menu"> 
-
     <ul id="MenuUl">
 		<%-- 顶级菜单 --%>
 		<s:iterator value="#application.topPrivilegeList">
+		<s:if test="#session.user.hasPrivilegeByName(name)">
 	        <li class="level1">
 	            <div onClick="menuClick(this);" class="level1Style">
 	            	<img src="style/images/MenuIcon/${icon}" class="Icon" /> 
@@ -28,17 +28,19 @@
 	            <ul style="" class="MenuLevel2">
 	            	<s:iterator value="children">
 		                <li class="level2">
+		                <s:if test="#session.user.hasPrivilegeByName(name)">
 		                    <div class="level2Style">
 			                    <img src="style/images/MenuIcon/menu_arrow_single.gif" /> 
-			                    <a target="right" href="${pageContext.request.contextPath}/${url}.action"> ${name}</a>
+			                    <a target="right" href="${oa}/${url}.action"> ${name}</a>
 		                 	</div>
+		                </s:if>
 		                </li>
 	            	</s:iterator>
 	            </ul>
 	        </li>
+	        </s:if>
 		</s:iterator>       
     </ul>
-    
 </div>
 </body>
 </html>
