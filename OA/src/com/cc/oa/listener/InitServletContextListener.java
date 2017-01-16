@@ -27,6 +27,12 @@ public class InitServletContextListener implements ServletContextListener {
 		List<Privilege> topPrivilegeList = privilegeService.findTopPrivilege();
 		application.setAttribute("topPrivilegeList", topPrivilegeList);
 		
+		
+		
+		//得到所有权限的Url
+		List<String> allPrivilegeUrls = privilegeService.getAllPrivilegeUrls();
+		application.setAttribute("allPrivilegeUrls", allPrivilegeUrls);
+		
 	}
 	
 	@Override

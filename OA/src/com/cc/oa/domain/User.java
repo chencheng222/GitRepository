@@ -1,7 +1,10 @@
 package com.cc.oa.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * 用户
@@ -62,16 +65,27 @@ public class User {
 			privilegeUrl = privilegeUrl.substring(0, privilegeUrl.length()-2);
 		}
 		
-		//非超级管理员用户权限判断
-		for (Role role : roles) {
-			for (Privilege privilege : role.getPrivileges()) {
-				if (privilegeUrl.equals(privilege.getUrl())){
-					return true;
-				}
-			}
+		List<String> allPrivilegeUrls = (List<String>) ActionContext.getContext().getApplication().get("allPrivilegeUrls");
+		
+		//如果权限列表中没有对应的Url，则该Url作为公共资源访问
+		if (!allPrivilegeUrls.contains(privilegeUrl)) {
 			
+			return true;
+			
+		} else {
+			
+			//非超级管理员用户权限判断
+			for (Role role : roles) {
+				for (Privilege privilege : role.getPrivileges()) {
+					if (privilegeUrl.equals(privilege.getUrl())){
+						return true;
+					}
+				}
+				
+			}
+			return false;
 		}
-		return false;
+		
 	}
 	
 	public boolean isAdmin() {

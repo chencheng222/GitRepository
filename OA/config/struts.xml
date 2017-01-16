@@ -20,6 +20,21 @@
 	
 		<!-- 配置全局错误页面，只能在package下 ，范围只在当前包-->
 	<package name="default" extends="struts-default" namespace="/">
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name="checkPrivilege" class="com.cc.oa.interceptor.CheckPrivilegeInterceptor"></interceptor>
+			
+			<!-- 覆盖默认Struts拦截器，优先于默认拦截器执行 -->
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="checkPrivilege"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+	
+	<global-results>
+		<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+		<result name="noPrivilegeError">noPrivilegeError.jsp</result>
+	</global-results>
 	
 		<!-- 岗位管理 -->
 		<action name="roleAction_*" class="com.cc.oa.view.action.RoleAction" method="{1}">
@@ -45,7 +60,7 @@
 			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
 			<result name="toList" type="redirectAction">userAction_list</result>
 			
-			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+			
 			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result>
 		</action>
