@@ -8,6 +8,11 @@
 		$(function(){
 			document.getElementById('loginNameInput').focus();
 		});
+		
+		//session过期时页面嵌套解决
+		if (window.parent != window) {
+			window.parent.location.reload(true);
+		}
 	</script>
 </head>
 
