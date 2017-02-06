@@ -1,16 +1,23 @@
 package com.cc.oa.view.action;
 
+import java.util.List;
+
+import javax.swing.text.html.FormSubmitEvent;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.cc.oa.base.BaseAction;
 import com.cc.oa.domain.Forum;
+import com.opensymphony.xwork2.ActionContext;
 
 @Controller
 @Scope("prototype")
 public class ForumManageAction extends BaseAction<Forum> {
 
 	public String list() throws Exception{
+		List<Forum> forumList =  forumService.findAll();
+		ActionContext.getContext().put("forumList", forumList);
 		
 		return "list";
 	}
@@ -22,7 +29,7 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 */
 	public String addUI() throws Exception{
 		
-		return "addUI";
+		return "saveUI";
 	}
 	
 	/**
@@ -31,6 +38,8 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
+		forumService.save(model);
+		
 		return "toList";
 	}
 	
@@ -40,8 +49,10 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * @throws Exception
 	 */
 	public String editUI() throws Exception{
+		Forum forum = forumService.getById(model.getId());
+		ActionContext.getContext().getValueStack().push(forum);
 		
-		return "editUI";
+		return "saveUI";
 	}
 	
 	/**
@@ -50,6 +61,11 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * @throws Exception
 	 */
 	public String edit() throws Exception{
+		Forum forum = forumService.getById(model.getId());
+		forum.setName(model.getName());
+		forum.setDescription(model.getDescription());
+		forumService.update(forum);
+		
 		return "toList";
 	}
 	
@@ -59,6 +75,8 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * @throws Exception
 	 */
 	public String delete() throws Exception{
+		forumService.delete(model.getId());
+		
 		return "toList";
 	}
 }

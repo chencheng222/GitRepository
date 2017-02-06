@@ -4,8 +4,8 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.annotation.Resource;
 
-import com.cc.oa.domain.Privilege;
 import com.cc.oa.service.DepartmentService;
+import com.cc.oa.service.ForumService;
 import com.cc.oa.service.PrivilegeService;
 import com.cc.oa.service.RoleService;
 import com.cc.oa.service.UserService;
@@ -25,6 +25,9 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	
 	@Resource
 	protected PrivilegeService privliegeService;
+	
+	@Resource
+	protected ForumService forumService;
 	
 	protected T model;
 	
