@@ -79,4 +79,26 @@ public class ForumManageAction extends BaseAction<Forum> {
 		
 		return "toList";
 	}
+	
+	/**
+	 * 上移
+	 * @return
+	 * @throws Exception
+	 */
+	public String moveUp() throws Exception {
+		forumService.moveUp(model.getId());
+		
+		return "toList";
+	}
+
+	/**
+	 * 下移
+	 * @return
+	 * @throws Exception
+	 */
+	public String moveDown() throws Exception {
+		forumService.moveDown(model.getId());
+		
+		return "toList";
+	}
 }
