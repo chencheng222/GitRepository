@@ -1,23 +1,30 @@
 package com.cc.oa.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * 版块管理实体类
+ * 版块
  * 
- * @author 滴水藏海
- *
+ * @author chenc
+ * 
  */
 public class Forum {
-
-	private long id;
+	private Long id;
 	private String name;
 	private String description;
-	private int position;// 用于实现调整上下版块位置
+	private int position; // 排序用的位置号
 
-	public long getId() {
+	private Set<Topic> topics = new HashSet<Topic>();
+	private int topicCount; // 主题数
+	private int articleCount; // 文章数（主题+回复）
+	private Topic lastTopic; // 最后发表的主题
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -45,4 +52,36 @@ public class Forum {
 		this.position = position;
 	}
 
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
+	}
+
+	public int getTopicCount() {
+		return topicCount;
+	}
+
+	public void setTopicCount(int topicCount) {
+		this.topicCount = topicCount;
+	}
+
+	public int getArticleCount() {
+		return articleCount;
+	}
+
+	public void setArticleCount(int articleCount) {
+		this.articleCount = articleCount;
+	}
+
+	public Topic getLastTopic() {
+		return lastTopic;
+	}
+
+	public void setLastTopic(Topic lastTopic) {
+		this.lastTopic = lastTopic;
+	}
+	
 }

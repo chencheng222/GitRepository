@@ -17,7 +17,7 @@ public class ForumServiceImpl extends BaseDaoImpl<Forum> implements ForumService
 		getSession().save(t);
 		// 设置Position位置为最大
 		// Hiberate持久化状态，不需要再次更新，数据会实时同步
-		t.setPosition((int) t.getId());
+		t.setPosition(t.getId().intValue());
 	}
 
 	@Override

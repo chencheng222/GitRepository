@@ -31,6 +31,8 @@
 	<mapping resource="com/cc/oa/domain/User.hbm.xml" />
 	<mapping resource="com/cc/oa/domain/Privilege.hbm.xml" />
 	<mapping resource="com/cc/oa/domain/Forum.xml" />
+	<mapping resource="com/cc/oa/domain/Reply.hbm.xml" />
+	<mapping resource="com/cc/oa/domain/Topic.hbm.xml" />
 
 </session-factory>
 
