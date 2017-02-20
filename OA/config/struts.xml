@@ -74,10 +74,30 @@
 			<result name="bottom">/WEB-INF/jsp/homeAction/bottom.jsp</result>
 		</action>
 		
+		<!-- 版块管理 -->
 		<action name="forumManageAction_*" class="com.cc.oa.view.action.ForumManageAction" method="{1}">
 			<result name="list">/WEB-INF/jsp/forumManageAction/list.jsp</result>
 			<result name="saveUI">/WEB-INF/jsp/forumManageAction/saveUI.jsp</result>
 			<result name="toList" type="redirectAction">forumManageAction_list</result>
+		</action>
+		
+		<!-- 版块 -->
+		<action name="forumAction_*" class="com.cc.oa.view.action.ForumAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/forumAction/list.jsp</result>
+			<result name="show">/WEB-INF/jsp/forumAction/show.jsp</result>
+		</action>
+		
+		<!-- 主题 -->
+		<action name="topicAction_*" class="com.cc.oa.view.action.TopicAction" method="{1}">
+			<result name="show">/WEB-INF/jsp/topicAction/show.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/topicAction/addUI.jsp</result>
+			<result name="add" type="redirectAction">topicAction_show</result>
+		</action>
+		
+		<!-- 回复 -->
+		<action name="replyAction_*" class="com.cc.oa.view.action.ReplyAction" method="{1}">
+			<result name="addUI">/WEB-INF/jsp/replyAction/addUI.jsp</result>
+			<result name="add" type="redirectAction">topicAction_show</result>
 		</action>
 	</package>
 </struts>

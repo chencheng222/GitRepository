@@ -12,7 +12,7 @@
         </id>
 
         <property name="title"/>
-        <property name="content" type="65535"/>
+        <property name="content" type="text" length="50000"/>
         <property name="faceIcon"/>
         <property name="postTime" type="timestamp"/>
         <property name="ipAddr"/>

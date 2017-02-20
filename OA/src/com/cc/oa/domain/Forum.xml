@@ -20,7 +20,7 @@
         <property name="articleCount"/>
 
 		<!--topics属性:本类与Topic一对多 -->
-		<set name="topics" lazy="false">
+		<set name="topics" lazy="true">
 			<key column="forumId"/>
 			<one-to-many class="Topic"/>
 		</set>

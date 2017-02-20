@@ -8,6 +8,7 @@ import com.cc.oa.service.DepartmentService;
 import com.cc.oa.service.ForumService;
 import com.cc.oa.service.PrivilegeService;
 import com.cc.oa.service.RoleService;
+import com.cc.oa.service.TopicService;
 import com.cc.oa.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -28,6 +29,9 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	
 	@Resource
 	protected ForumService forumService;
+	
+	@Resource
+	protected TopicService topicService;
 	
 	protected T model;
 	
