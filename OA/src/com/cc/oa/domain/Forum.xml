@@ -20,12 +20,12 @@
         <property name="articleCount"/>
 
 		<!--topics属性:本类与Topic一对多 -->
-		<set name="topics" lazy="true">
+		<set name="topics" lazy="false">
 			<key column="forumId"/>
 			<one-to-many class="Topic"/>
 		</set>
 		
 		<!--lastTopic属性:本类与Topic一对一 -->
-		<many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
+		<many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true" lazy="false"></many-to-one>
     </class>
 </hibernate-mapping>

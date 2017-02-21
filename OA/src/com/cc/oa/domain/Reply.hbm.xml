@@ -18,7 +18,7 @@
         <property name="ipAddr"/>
         
         <!--author属性:本类与User多对一  -->
-        <many-to-one name="author" class="User" column="authorId" lazy="false"></many-to-one>
+        <many-to-one name="author" class="User" column="authorId"></many-to-one>
         
         <!--topic属性:本类与Topic多对一  -->
         <many-to-one name="topic" class="Topic" column="topicId" lazy="false"></many-to-one>
